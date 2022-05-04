@@ -6,6 +6,8 @@ dotenv.config()
 
 // Routes
 import { userRouter } from "./routes/user.routes.js"
+import { exerciseRouter } from "./routes/exercise.routes.js"
+import { workoutRouter } from "./routes/workout.routes.js"
 
 //middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
@@ -14,6 +16,8 @@ const app = express()
 app.use(express.json())
 
 app.use("/api/users", userRouter)
+app.use("/api/exercise", exerciseRouter)
+app.use("/api/workout", workoutRouter)
 
 app.use(notFound)
 app.use(errorHandler)

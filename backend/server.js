@@ -7,10 +7,16 @@ dotenv.config()
 // Routes
 import { userRouter } from "./routes/user.routes.js"
 
+//middleware
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
+
 const app = express()
 app.use(express.json())
 
 app.use("/api/users", userRouter)
+
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 

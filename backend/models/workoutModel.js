@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const workoutSchema = mongoose.Schema(
     {
         name: { type: String, required: true },
-        exrcises: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exercise" }],
+        exercises: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exercise" }],
     },
     {
         minimize: false,

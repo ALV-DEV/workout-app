@@ -1,6 +1,8 @@
 import { generateToken } from "../helpers/generateToken.js"
 import User from "../models/userModel.js"
 import asyncHandler from "express-async-handler"
+import ExerciseLog from "../models/exreciseLogModel.js"
+import WorkoutLog from "../models/workoutLogModel.js"
 
 class UserController {
     // @desc   Get user profile
@@ -8,8 +10,30 @@ class UserController {
     // @access Private
     async getProfile(req, res) {
         try {
-            const user = await User.findById(req.user._id).select("-password")
-            return res.json(user)
+            const user = await User.findById(req.user._id)
+                .select("-password")
+                .lean()
+            const exerciseLogByUser = await ExerciseLog.find({
+                user: user._id,
+                comleted: true,
+            })
+            let countExerciseTimesCompleted = 0
+            let times = []
+            let kgs = 0
+            exerciseLogByUser.forEach((log) => {
+                countExerciseTimesCompleted += log.times.length
+                times.push(...log.times)
+            })
+            times.forEach((item) => {
+                kgs += item.weight
+            })
+
+            const minutes = Math.ceil(countExerciseTimesCompleted * 2.3)
+            const wokrkouts = await WorkoutLog.find({
+                user: user._id,
+                comleted: true,
+            }).countDocuments()
+            return res.json({ ...user, minutes, wokrkouts, kgs })
         } catch (error) {
             console.log(error)
         }

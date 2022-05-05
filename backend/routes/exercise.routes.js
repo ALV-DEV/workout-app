@@ -4,6 +4,8 @@ import { protect } from "../middleware/authMiddleware.js"
 export const exerciseRouter = new express.Router()
 
 exerciseRouter.post("/", protect, exerciseController.addExercise)
+exerciseRouter.get("/", protect, exerciseController.getAllExercises)
+
 exerciseRouter.post("/log", protect, exerciseController.createExerciseLog)
 exerciseRouter.get("/log/:id", protect, exerciseController.getExerciseLog)
 exerciseRouter.put(
@@ -12,3 +14,5 @@ exerciseRouter.put(
     exerciseController.updateCompleteExerciseLog
 )
 exerciseRouter.put("/log/:id", protect, exerciseController.updateExerciseLog)
+exerciseRouter.put("/:id", protect, exerciseController.updateExercise)
+exerciseRouter.delete("/:id", protect, exerciseController.deleteExercise)

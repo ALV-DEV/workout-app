@@ -5,3 +5,10 @@ export const exerciseRouter = new express.Router()
 
 exerciseRouter.post("/", protect, exerciseController.addExercise)
 exerciseRouter.post("/log", protect, exerciseController.createExerciseLog)
+exerciseRouter.get("/log/:id", protect, exerciseController.getExerciseLog)
+exerciseRouter.put(
+    "/log/complete/:id",
+    protect,
+    exerciseController.updateCompleteExerciseLog
+)
+exerciseRouter.put("/log/:id", protect, exerciseController.updateExerciseLog)

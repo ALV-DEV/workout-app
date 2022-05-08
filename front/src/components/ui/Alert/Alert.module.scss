@@ -1,0 +1,22 @@
+@import "../../../styles/_animations";
+
+.alert {
+    width: 100%;
+    background-color: rgb(66, 221, 120);
+    color: rgb(28, 28, 28);
+    margin-bottom: 1rem;
+    animation: opacity 0.4s;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    &.error {
+        background-color: rgb(198, 51, 81);
+        color: #fff;
+    }
+    &.info {
+        background-color: rgb(99, 129, 238);
+    }
+    &.warning {
+        background-color: rgb(231, 238, 99);
+    }
+}

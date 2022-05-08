@@ -25,7 +25,7 @@ const Header = () => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
-    const auth = true
+    const auth = false
     return (
         <header className={styles.header}>
             {auth ? (
@@ -44,7 +44,10 @@ const Header = () => {
                     )}
                 </>
             ) : (
-                <button className={styles.header__btn}>
+                <button
+                    className={styles.header__btn}
+                    onClick={() => navigate("/login")}
+                >
                     <img src={userImg} alt='user icon' />
                 </button>
             )}

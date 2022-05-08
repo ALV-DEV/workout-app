@@ -2,8 +2,9 @@ import styles from "./Header.module.scss"
 import userImg from "../../../images/header/user.svg"
 import menuImg from "../../../images/header/menu.svg"
 import menuCloseImg from "../../../images/header/menuClose.svg"
+import backArrow from "../../../images/header/backArrow.svg"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 const menuItem = [
     {
@@ -22,11 +23,32 @@ const menuItem = [
 
 const Header = () => {
     const [show, setShow] = useState(false)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const auth = true
     return (
         <header className={styles.header}>
-            <button className={styles.header__btn}>
-                <img src={userImg} alt='user icon' />
-            </button>
+            {auth ? (
+                <>
+                    {location.pathname === "/" ? (
+                        <button className={styles.header__btn}>
+                            <img src={userImg} alt='user icon' />
+                        </button>
+                    ) : (
+                        <button
+                            className={styles.header__btn}
+                            onClick={() => navigate(-1)}
+                        >
+                            <img src={backArrow} alt='back icon' />
+                        </button>
+                    )}
+                </>
+            ) : (
+                <button className={styles.header__btn}>
+                    <img src={userImg} alt='user icon' />
+                </button>
+            )}
+
             <nav className={styles.header__menu}>
                 <button
                     className={styles.header__btn}
@@ -40,7 +62,10 @@ const Header = () => {
                     }`}
                 >
                     {menuItem.map((item) => (
-                        <li className={styles["header__menu-item"]}>
+                        <li
+                            className={styles["header__menu-item"]}
+                            onClick={() => setShow(false)}
+                        >
                             <Link to={item.path}>{item.title}</Link>
                         </li>
                     ))}

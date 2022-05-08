@@ -8,7 +8,7 @@
     box-sizing: border-box;
 }
 body {
-    background-color: $dark-purple;
+    background-color: $black;
     color: #fff;
 }
 
@@ -41,3 +41,83 @@ a {
     align-items: center;
     flex-direction: column;
 }
+
+.header-page {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: $bx-accent;
+}
+
+// ***** React select styles *****
+.css-b62m3t-container {
+    width: 100%;
+}
+.select2-selection {
+    &__control {
+        border-radius: 10px !important;
+        cursor: pointer !important;
+        min-height: 48px !important;
+        background-color: $purple !important;
+        border: 1px solid transparent !important;
+        color: $white !important;
+        font-size: 16px;
+        width: 100%;
+        &--is-focused {
+            border-color: transparent !important;
+            box-shadow: 0 0 0 1px rgba($accent, 0.3) !important;
+        }
+    }
+
+    &__single-value {
+        color: $white !important;
+    }
+    &__menu {
+        background-color: $purple !important;
+        border-radius: 10px !important;
+
+        &-list {
+            border-radius: 10px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    }
+    &__option {
+        &--is-selected {
+            background-color: darken($purple, 7%) !important;
+        }
+
+        &--is-focused {
+            background-color: darken($purple, 3%) !important;
+        }
+    }
+    &-indicatorContainer:hover {
+        color: #946e86 !important;
+    }
+    &__placeholder {
+        color: #946e86 !important;
+    }
+
+    &__multi-value {
+        border-radius: 5px !important;
+        background-color: lighten($purple, 10%) !important;
+        &__label {
+            color: $white !important;
+        }
+
+        &__remove:hover {
+            background-color: rgba($accent, 0.3) !important;
+            color: $purple !important;
+        }
+    }
+    &__input {
+        color: $white !important;
+    }
+}
+
+// ***** React select styles *****

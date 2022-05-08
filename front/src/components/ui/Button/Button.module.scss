@@ -8,6 +8,7 @@ $accent-btn-bg: rgba($accent, 0.4);
     transition: background-color 0.4s ease-in-out;
     padding: 11px 46px;
     background-color: $accent-btn-bg;
+    margin-top: 2rem;
     &:hover {
         background-color: rgba($accent, 0.7);
     }

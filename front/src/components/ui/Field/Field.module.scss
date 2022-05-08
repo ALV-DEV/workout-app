@@ -1,0 +1,19 @@
+@import "../../../styles/variables";
+
+.input {
+    background-color: $purple;
+    border: 1px solid transparent;
+    outline: none;
+    padding: 14px;
+    color: $white;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    width: 100%;
+    &:focus {
+        border-color: rgba($accent, 0.3);
+    }
+    &::placeholder {
+        color: #946e86;
+    }
+}

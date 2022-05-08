@@ -1,10 +1,50 @@
+@import "../../../styles/variables";
+@import "../../../styles/_animations";
+
 .header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 30px;
     &__btn {
         background-color: transparent;
         border: none;
+    }
+    &__menu {
+        position: relative;
+        color: #000;
+        font-size: 14px;
+    }
+    &__menu-list {
+        position: absolute;
+        top: calc(100% + 14px);
+        right: 0;
+        padding: 10px 14px;
+        background-color: #fff;
+        box-shadow: $bx-16;
+        border-radius: 10px 0px 10px 10px;
+        width: 150px;
+        display: none;
+        animation: opacity 0.4s;
+        &.show {
+            display: block;
+        }
+        a:hover,
+        a:active {
+            color: $accent;
+        }
+    }
+    &__menu-item,
+    &__menu-btn {
+        margin: 6px 0;
+        color: #000;
+    }
+
+    &__menu-btn:hover {
+        color: $accent;
     }
 }

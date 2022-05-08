@@ -9,6 +9,7 @@
 }
 body {
     background-color: $dark-purple;
+    color: #fff;
 }
 
 code {
@@ -16,11 +17,27 @@ code {
         monospace;
 }
 
-.container {
+button {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.p-30 {
     padding: 30px;
+}
+
+.container {
     height: 100vh;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: column;
-    // width: 100%;
 }

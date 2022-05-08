@@ -1,0 +1,17 @@
+.counters {
+    max-width: 100%;
+    width: 600px;
+    text-align: center;
+
+    &__head {
+        &-item {
+            font-weight: normal;
+            color: #954b70;
+            font-size: 23px;
+        }
+    }
+    &__item {
+        font-weight: bold;
+        font-size: 18px;
+    }
+}

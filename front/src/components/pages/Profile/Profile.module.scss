@@ -1,0 +1,41 @@
+@import "../../../styles/variables";
+
+.profile {
+    &__header {
+        width: 100%;
+        height: 365px;
+        background-image: url("../../../images/bg/profile-bg.jpg");
+        align-items: center;
+    }
+    &__title {
+        font-size: 30px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 20px 0;
+    }
+    &__content {
+        padding: 40px 30px;
+        display: flex;
+        justify-content: space-around;
+    }
+    &__img {
+        width: 25vw;
+        height: 60vh;
+        overflow: hidden;
+        border-radius: 20px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__content-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__content-title {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+}

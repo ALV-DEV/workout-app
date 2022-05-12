@@ -1,5 +1,5 @@
 import styles from "./Counters.module.scss"
-const Counters = () => {
+const Counters = ({ minutes, kgs, wokrkouts }) => {
     return (
         <table className={styles.counters}>
             <thead className={styles.counters__head}>
@@ -15,9 +15,9 @@ const Counters = () => {
             </thead>
             <tbody>
                 <tr>
-                    <td className={styles.counters__item}>7</td>
-                    <td className={styles.counters__item}>1</td>
-                    <td className={styles.counters__item}>5</td>
+                    <td className={styles.counters__item}>{minutes}</td>
+                    <td className={styles.counters__item}>{wokrkouts}</td>
+                    <td className={styles.counters__item}>{kgs}</td>
                 </tr>
             </tbody>
         </table>

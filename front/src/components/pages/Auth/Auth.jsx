@@ -1,5 +1,8 @@
 import { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { useMutation } from "react-query"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { $api } from "../../../api/api"
+import { useAuth } from "../../../hooks/useAuth"
 import Alert from "../../ui/Alert/Alert"
 import Button from "../../ui/Button/Button"
 import Field from "../../ui/Field/Field"
@@ -8,12 +11,57 @@ const Auth = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const { pathname } = useLocation()
+    const navigate = useNavigate()
+    const { setIsAuth } = useAuth()
+    const {
+        mutate: register,
+        isLoading,
+        error,
+    } = useMutation(
+        "register",
+        () =>
+            $api({
+                url: "/users",
+                type: "POST",
+                auth: false,
+                body: { email, password },
+            }),
+        {
+            onSuccess(data) {
+                localStorage.setItem("token", data.token)
+                setIsAuth(true)
+                navigate("/")
+            },
+        }
+    )
+
+    const {
+        mutate: login,
+        isLoading: isLoadLogin,
+        error: loginError,
+    } = useMutation(
+        "login",
+        () =>
+            $api({
+                url: "/users/login",
+                type: "POST",
+                auth: false,
+                body: { email, password },
+            }),
+        {
+            onSuccess(data) {
+                localStorage.setItem("token", data.token)
+                setIsAuth(true)
+                navigate("/")
+            },
+        }
+    )
     const handleSubmit = (e) => {
         e.preventDefault()
         if (pathname === "/login") {
-            console.log("login")
+            login()
         } else {
-            console.log("register")
+            register()
         }
     }
     return (
@@ -24,7 +72,8 @@ const Auth = () => {
                 </h1>
             </div>
             <form onSubmit={handleSubmit} className={styles["auth-page__form"]}>
-                {/* <Alert text={"Регистрация завешена"} type='warning' /> */}
+                {error && <Alert text={error} type='error' />}
+                {loginError && <Alert text={error} type='error' />}
 
                 <Field
                     type='email'

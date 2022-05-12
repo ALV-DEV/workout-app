@@ -23,4 +23,14 @@
         font-size: 40px;
         color: $white;
     }
+    &__title-no-auth {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.11);
+        padding: 30px;
+        width: 500px;
+        text-align: center;
+    }
 }

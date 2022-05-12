@@ -4,7 +4,7 @@ const exerciseSchema = mongoose.Schema(
     {
         name: { type: String, required: true },
         times: { type: Number, required: true },
-        imageId: { type: Number, required: true },
+        imageName: { type: String, required: true },
     },
     {
         minimize: false,

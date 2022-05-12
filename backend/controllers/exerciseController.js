@@ -8,8 +8,8 @@ class ExerciseController {
     // @access Private
     async addExercise(req, res) {
         try {
-            const { name, times, imageId } = req.body
-            const exercise = await Exercise.create({ name, times, imageId })
+            const { name, times, imageName } = req.body
+            const exercise = await Exercise.create({ name, times, imageName })
             return res.json(exercise)
         } catch (error) {
             throw new Error(error)
@@ -44,7 +44,7 @@ class ExerciseController {
     async getExerciseLog(req, res) {
         try {
             const exerciseLog = await ExerciseLog.findById(req.params.id)
-                .populate("exercise", "name imageId")
+                .populate("exercise", "name imageName")
                 .lean()
             const prevExercise = await ExerciseLog.find({
                 user: req.user._id,
@@ -107,14 +107,14 @@ class ExerciseController {
     // @access Private
     async updateExercise(req, res) {
         try {
-            const { name, times, imageId } = req.body
+            const { name, times, imageName } = req.body
             const exercise = await Exercise.findById(req.params.id)
             if (!exercise) {
                 res.status(404).json({ message: "Exercise not found" })
             }
             exercise.name = name
             exercise.times = times
-            exercise.imageId = imageId
+            exercise.imageName = imageName
             const upadatedExercise = await exercise.save()
             return res.json(upadatedExercise)
         } catch (error) {

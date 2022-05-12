@@ -1,6 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
+import path from "path"
 
 dotenv.config()
 
@@ -14,6 +15,10 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 
 const app = express()
 app.use(express.json())
+
+const __dirname = path.resolve()
+console.log(__dirname)
+app.use("/static", express.static(path.join(__dirname, "/backend/static/")))
 
 app.use("/api/users", userRouter)
 app.use("/api/exercise", exerciseRouter)

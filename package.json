@@ -6,7 +6,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon backend/server",
-        "client":"npm run start --prefix front",
+        "client": "npm run start --prefix front",
         "start": "node backend/server"
     },
     "author": "",

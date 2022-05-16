@@ -30,6 +30,11 @@ a {
     color: inherit;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 .p-30 {
     padding: 30px;
 }

@@ -22,6 +22,9 @@
         margin: 20px;
         font-size: 40px;
         color: $white;
+        @media (max-width: "480px") {
+            font-size: 30px;
+        }
     }
     &__title-no-auth {
         position: absolute;

@@ -8,6 +8,9 @@
             font-weight: normal;
             color: #954b70;
             font-size: 23px;
+            @media (max-width: "480px") {
+                font-size: 18px;
+            }
         }
     }
     &__item {

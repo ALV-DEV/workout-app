@@ -115,6 +115,20 @@ class WorkoutController {
     async createWorkoutLog(req, res) {
         try {
             const { workoutId } = req.body
+            const workoutLogSearch = await WorkoutLog.findOne({
+                workout: workoutId,
+            })
+                .populate({
+                    path: "workout",
+                    populate: { path: "exercises" },
+                })
+                .populate({
+                    path: "exercisesLog",
+                    populate: { path: "exercise" },
+                })
+            if (workoutLogSearch) {
+                return res.json(workoutLogSearch)
+            }
             const workout = await Workout.findById(workoutId).populate(
                 "exercises"
             )
@@ -160,7 +174,10 @@ class WorkoutController {
     async getWorkoutLog(req, res) {
         try {
             const workoutLog = await WorkoutLog.findById(req.params.id)
-                .populate("workout")
+                .populate({
+                    path: "workout",
+                    populate: { path: "exercises" },
+                })
                 .populate({
                     path: "exercisesLog",
                     populate: { path: "exercise" },
@@ -170,7 +187,10 @@ class WorkoutController {
                 res.status(404).json({ message: "WorkoutLog not found" })
                 throw new Error("WorkoutLog not found")
             }
-            const minutes = Math.ceil(workoutLog.workout.exercises.times * 3.7)
+            let minutes = 0
+            workoutLog.workout.exercises.forEach((ex) => {
+                minutes += Math.ceil(ex.times * 3.7)
+            })
             return res.json({ ...workoutLog, minutes })
         } catch (error) {
             throw new Error(error)
@@ -187,7 +207,7 @@ class WorkoutController {
                 res.status(404).json({ message: "WorkoutLog not found" })
                 throw new Error("WorkoutLog not found")
             }
-            workoutLog.comleted = !workoutLog.comleted
+            workoutLog.comleted = req.body.value
             const updatedWorcoutLog = await workoutLog.save()
             return res.json(updatedWorcoutLog)
         } catch (error) {

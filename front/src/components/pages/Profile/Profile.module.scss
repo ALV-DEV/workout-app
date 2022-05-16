@@ -12,6 +12,9 @@
         font-weight: bold;
         text-transform: uppercase;
         margin: 20px 0;
+        @media (max-width: "480px") {
+            font-size: 20px;
+        }
     }
     &__content {
         padding: 40px 30px;

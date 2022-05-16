@@ -4,6 +4,9 @@ import NewExercise from "../components/pages/NewExercise/NewExercise"
 import NewWorkout from "../components/pages/NewWorkout/NewWorkout"
 import Profile from "../components/pages/Profile/Profile"
 import SingleWorkout from "../components/pages/SingleWorkout/SingleWorkout"
+import SingleExercise from "../components/pages/SingleExercise/SingleExercise"
+import Workouts from "../components/pages/Workouts/Workouts"
+
 export const publicRoutes = [
     {
         path: "/",
@@ -39,5 +42,13 @@ export const privateRoutes = [
     {
         path: "/workouts/:id",
         component: SingleWorkout,
+    },
+    {
+        path: "/exercise/:id",
+        component: SingleExercise,
+    },
+    {
+        path: "/workouts",
+        component: Workouts,
     },
 ]

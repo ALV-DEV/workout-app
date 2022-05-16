@@ -31,6 +31,7 @@ const Header = () => {
     const logout = () => {
         localStorage.removeItem("token")
         setIsAuth(false)
+        navigate("/login")
     }
     console.log(isAuth)
     return (

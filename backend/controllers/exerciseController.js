@@ -21,6 +21,12 @@ class ExerciseController {
     // @access Private
     async createExerciseLog(req, res) {
         const { exerciseId, times } = req.body
+        const exerciseLogSearch = await ExerciseLog.findOne({
+            exercise: exerciseId,
+        })
+        if (exerciseLogSearch) {
+            return res.json(exerciseLogSearch)
+        }
         let timesArray = []
         for (let i = 0; i < times; i++) {
             timesArray.push({
@@ -48,7 +54,7 @@ class ExerciseController {
                 .lean()
             const prevExercise = await ExerciseLog.find({
                 user: req.user._id,
-                exercise: exerciseLog._id,
+                exercise: exerciseLog.exercise._id,
             }).sort("desc")
             let newTimes = reBuildTimes(exerciseLog)
             if (prevExercise) {
@@ -94,7 +100,7 @@ class ExerciseController {
                 res.status(404).json({ message: "Log not found" })
                 throw new Error("Log not found")
             }
-            currentExerciseLog.comleted = !currentExerciseLog.comleted
+            currentExerciseLog.comleted = req.body.value
             const updatedExerciseLog = await currentExerciseLog.save()
             return res.json(updatedExerciseLog)
         } catch (error) {

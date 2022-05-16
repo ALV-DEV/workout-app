@@ -16,4 +16,122 @@
         padding: 40px 18px;
         width: 100%;
     }
+    &__success-btn {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media (max-width: "480px") {
+            flex-direction: column;
+        }
+        button {
+            margin: 0;
+            @media (max-width: "480px") {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &__header-wrap {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 10px;
+        }
+    }
+
+    &__table {
+        width: 100%;
+        text-align: center;
+        background-color: $purple;
+        border-radius: 10px;
+        min-height: 400px;
+        margin-top: 20px;
+        &-completed {
+            position: relative;
+            i {
+                color: $accent;
+            }
+            &::before {
+                content: "";
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                height: 2px;
+                background-color: $accent;
+            }
+        }
+        &-item,
+        &-head__item {
+            padding: 10px;
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            border-color: $accent;
+            &:last-child {
+                border-right: none;
+            }
+        }
+        &-item {
+            width: 30%;
+            border-bottom: none;
+            &:nth-child(2) {
+                width: 40%;
+            }
+            &__inner {
+                width: 22%;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                &:last-child {
+                    width: 19%;
+                    @media (max-width: "480px") {
+                        width: 60%;
+                    }
+                }
+                @media (max-width: "480px") {
+                    width: 60%;
+                }
+            }
+            label {
+                width: 30px;
+                display: block;
+                height: 30px;
+                border: 1px solid white;
+                margin: 0 auto;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            input[type="checkbox"] {
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                position: absolute;
+            }
+            input[type="checkbox"]:checked + label {
+                background-image: url("../../../images/exercise/exercise_check.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                border-color: $accent;
+            }
+            input[type="number"] {
+                -moz-appearance: textfield;
+                border: none;
+                outline: none;
+                background-color: $accent;
+                width: 25px;
+                padding: 3px;
+                color: $white;
+                border-radius: 6px;
+            }
+            input:disabled {
+                color: darken($white, 2);
+                background-color: darken($accent, 9);
+            }
+        }
+    }
+    &__disabled {
+        color: darken($white, 2);
+    }
 }
